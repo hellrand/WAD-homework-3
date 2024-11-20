@@ -1,17 +1,160 @@
 <template>
   <div class="signup">
-    <h1>This is a signup page</h1>
+    <div id="signup-div">
+      <section class="signup-section">
+        <form>
+          <label>
+            Email: <input class="signup-field" type="email" name="email" id="email" placeholder="Email" required>
+          </label>
+          <label>
+            Password: <input v-model="password" @input="validate" class="signup-field" type="password" name="password"
+              id="password" placeholder="Password" required><br>
+          </label>
+
+          <div id="signup-button-space">
+            <input type="submit" value="Signup" id="signup-button">
+          </div>
+        </form>
+
+        <div id="password-validation-div">
+          <h3>Password must contain the following:</h3>
+          <p v-bind:class="(isSpecificLength) ? 'valid' : 'invalid'">Minimum <b>8 characters</b> and maximum
+            <b>8 characters</b>
+          </p>
+          <p v-bind:class="(oneUppercase) ? 'valid' : 'invalid'">A <b>capital</b> letter</p>
+          <p v-bind:class="(twoLowercase) ? 'valid' : 'invalid'"> <b>2 lowercase</b> letters</p>
+          <p v-bind:class="(hasNumber) ? 'valid' : 'invalid'">A <b>number</b></p>
+          <p v-bind:class="(startsWithUppercase) ? 'valid' : 'invalid'"><b>Starts</b> with <b>uppercase</b> letter</p>
+          <p v-bind:class="(hasUnderscore) ? 'valid' : 'invalid'">Contains an <b>underscore ('_')</b></p>
+        </div>
+      </section>
+    </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'SignupView',
   components: {
-    Header
+    Header, Footer
+  },
+  data() {
+    return {
+      password: '',
+      isSpecificLength: false,
+      oneUppercase: false,
+      twoLowercase: false,
+      hasNumber: false,
+      startsWithUppercase: false,
+      hasUnderscore: false
+    }
+  },
+  methods: {
+    validate: function () {
+      let value = this.password;
+      this.isSpecificLength = 8 <= value.length && value.length < 15;
+      this.oneUppercase = /[A-Z]/.test(value)
+      this.twoLowercase = /[a-z].*[a-z]/.test(value)
+      this.hasNumber = /\d/.test(value)
+      this.startsWithUppercase = /[A-Z]/.test(value.charAt(0))
+      this.hasUnderscore = value.includes("_")
+    },
+  },
+}
+
+</script>
+
+<style scoped>
+/* Styling for the rectangle in which the signup form will be present */
+.signup-section {
+  margin: 10px;
+  width: 400px;
+  background-color: rgba(238, 238, 238, 0.722);
+  padding: 20px;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+/* Centering the signup-section */
+#signup-div {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+/* Spacing out form fields */
+.signup-section>form {
+  line-height: 1.75;
+}
+
+/* Making the signup button more prominent on the page */
+#signup-button {
+  padding: 7.5px 15px;
+  margin-top: 5px;
+  background-color: rgb(15, 49, 141);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+/* Makes the signup button larger when hovering over it */
+#signup-button:hover {
+  transform: scale(1.1);
+}
+
+/* Signup section compatibility with cellphones/small screens */
+@media (max-width: 450px) {
+  .signup-section input {
+    width: 125px;
+  }
+
+  #signup-button {
+    width: 75px;
   }
 }
-</script>
+
+/* Aligning the form fields in a satisfying way */
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
+  line-height: 26px;
+  margin-bottom: 10px;
+  margin-right: 35px
+}
+
+/* Aligning the form fields in a satisfying way */
+.signup-field {
+  height: 20px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+}
+
+#password-validation-div {
+  margin-top: 40px;
+  line-height: 5px;
+  text-align: left;
+  font-size: 13px;
+}
+
+/* Add a green text color */
+.valid {
+  color: green;
+}
+
+/* Add a red text color */
+.invalid {
+  color: red;
+}
+</style>
