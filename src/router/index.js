@@ -1,11 +1,12 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHashHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import SignupView from "@/views/SignupView.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   /*
   {
@@ -17,14 +18,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ /* '../views/AboutView.vue')
   }, */
   {
-    path: '/signup',
-    name: 'signup'
-  }
-]
+    path: "/signup",
+    name: "signup",
+    component: SignupView,
+  },
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
