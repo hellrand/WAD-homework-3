@@ -19,7 +19,7 @@
         <div id="password-validation-div">
           <h3>Password must contain the following:</h3>
           <p v-bind:class="(isSpecificLength) ? 'valid' : 'invalid'">Minimum <b>8 characters</b> and maximum
-            <b>8 characters</b>
+            <b>14 characters</b>
           </p>
           <p v-bind:class="(oneUppercase) ? 'valid' : 'invalid'">A <b>capital</b> letter</p>
           <p v-bind:class="(twoLowercase) ? 'valid' : 'invalid'"> <b>2 lowercase</b> letters</p>
