@@ -18,32 +18,30 @@
 
         <!-- like button and likes count -->
         <div class="post-footer">
-            <button class="like-button" @click="increaseLikes">&#128077;</button>
-        <div class="likes-count">{{ likes }} likes</div>
+            <button class="like-button" @click="handleLikeClick">&#128077;</button>
+        <div class="likes-count">{{ post.likesAmount }} likes</div>
         </div>
     </div>
 </template>
   
 <script>
+import { mapActions } from "vuex";
 export default {
     name: "PostComponent",
     props: {
-        // defines post prop - post data passed from the parent component
+        // defines post prop - post data and index passed from the parent component
         post: Object,
-    },
-    data() {
-        return {
-            likes: this.post.likesAmount, // initializes likes from the post object
-        };
+        index: Number,
     },
     methods: {
+        ...mapActions(["increaseLikes"]),
         // method to format the creation time into a readable format
         formatDate(datetime) {
             return new Date(datetime).toLocaleString();
         },
         // method to increase the like count
-        increaseLikes() {
-            this.likes++;
+        handleLikeClick() {
+            this.increaseLikes(this.index); // calls Vuex action with index
         },
     },
   };
@@ -62,6 +60,7 @@ export default {
     display: flex;
     flex-direction: column;
     background-color: rgba(238, 238, 238, 0.722);
+    transition: width 0.3s ease-in-out;
 }
 
 /* styling for the post content */
@@ -75,6 +74,7 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    flex-wrap: nowrap;
 }
 
 /* styling for profile picture */
@@ -94,6 +94,8 @@ export default {
     color: #555;
     margin-left: auto;
     margin-right: 5px;
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
 }
 
 /* styling for the post image */
@@ -140,11 +142,6 @@ export default {
     color: #555;
 }
 
-@media (max-width: 768px) {
-    main {
-        padding: 10px;
-    }
-}
 
 @media (max-width: 450px) {
     ul li {
@@ -158,7 +155,11 @@ export default {
         margin-left: 0;
     }
     .post {
-        width: 80%;
+        width: 70%;
+    }
+    .post-header{
+        flex-wrap: wrap;
+        gap: 5px;
     }
 }
 

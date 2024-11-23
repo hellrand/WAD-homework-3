@@ -87,12 +87,22 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    IncreaseLikes: (state, index) => {
+      state.posts[index].likesAmount++;
+    },
     SetLikesToZero: (state) => {
       state.posts.forEach((post) => {
         post.likesAmount = 0;
       });
     },
   },
-  actions: {},
+  actions: {
+    increaseLikes({ commit }, index) {
+      commit("IncreaseLikes", index);
+    },
+    resetLikes({ commit }) {
+      commit("SetLikesToZero");
+    },
+  },
   modules: {},
 });

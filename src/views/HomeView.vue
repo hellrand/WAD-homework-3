@@ -7,15 +7,19 @@
       <PostComponent 
       v-for="(post, index) in posts" 
       :key="index" 
-      :post="post" 
+      :post="post"
+      :index="index"
       />
+
+      <!-- reset likes button -->
+      <button class="reset-likes-button" @click="resetLikes">Reset likes</button>
     </main>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Header from '@/components/Header.vue';
 import PostComponent from "@/components/PostComponent.vue";
 import Footer from '@/components/Footer.vue';
@@ -29,6 +33,9 @@ export default {
     // fetches posts data from the Vuex store
     ...mapState(["posts"]),
   },
+  methods: {
+    ...mapActions(["resetLikes"]),
+  },
 }
 </script>
 
@@ -39,5 +46,24 @@ main {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+/* styling for the reset button */
+.reset-likes-button {
+  width: 30%;
+  min-width: 50px;
+  max-width: 250px;
+  padding: 10px;
+  background-color: #5096f7d6;
+  color: rgb(19, 45, 196);
+  font-size: 16px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.reset-likes-button:hover {
+  background-color: #447ed0d6;
 }
 </style>
