@@ -16,8 +16,11 @@
         <!-- post body, if available -->
         <p v-if="post.body" class="post-text">{{ post.body }}</p>
 
-        <!-- like button -->
-        <div class="like-button">&#128077;</div>
+        <!-- like button and likes count -->
+        <div class="post-footer">
+            <button class="like-button" @click="increaseLikes">&#128077;</button>
+        <div class="likes-count">{{ likes }} likes</div>
+        </div>
     </div>
 </template>
   
@@ -28,10 +31,19 @@ export default {
         // defines post prop - post data passed from the parent component
         post: Object,
     },
+    data() {
+        return {
+            likes: this.post.likesAmount, // initializes likes from the post object
+        };
+    },
     methods: {
         // method to format the creation time into a readable format
         formatDate(datetime) {
-        return new Date(datetime).toLocaleString();
+            return new Date(datetime).toLocaleString();
+        },
+        // method to increase the like count
+        increaseLikes() {
+            this.likes++;
         },
     },
   };
@@ -58,7 +70,7 @@ export default {
     margin: 0 auto;
 }
 
-/* styling for the post header */
+/* styling for the profile picture, username and date */
 .post-header {
     display: flex;
     align-items: center;
@@ -90,6 +102,7 @@ export default {
     height: auto;
     display: block;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 /* styling for the post body text */
@@ -98,19 +111,33 @@ export default {
     text-align: left;
 }
 
+/* like button and likes count */
+.post-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* styling for the like button */
 .like-button {
-    color: white;
     border: none;
-    margin-top: 10px;
     margin-bottom: 10px;
     font-size: 24px;
     cursor: pointer;
-    text-align: left;
 }
 
-.like-button:focus {
-    outline: none; /* Ensures no outline on focus */
-    box-shadow: 0 0 5px rgba(0, 115, 230, 0.5); /* Optionally add a subtle glow for focus */
+.like-button:hover {
+    transform: scale(1.1);
+}
+
+.like-button:active {
+    transform: scale(0.9);
+  
+}
+
+/* styling for the likes count */
+.likes-count {
+    color: #555;
 }
 
 @media (max-width: 768px) {
