@@ -12,7 +12,7 @@
           </label>
 
           <div id="signup-button-space">
-            <input type="submit" value="Signup" id="signup-button">
+            <input :disabled="!canSubmit" type="submit" value="Signup" id="signup-button">
           </div>
         </form>
 
@@ -43,7 +43,8 @@ export default {
       twoLowercase: false,
       hasNumber: false,
       startsWithUppercase: false,
-      hasUnderscore: false
+      hasUnderscore: false,
+      canSubmit: false
     }
   },
   methods: {
@@ -55,6 +56,7 @@ export default {
       this.hasNumber = /\d/.test(value)
       this.startsWithUppercase = /[A-Z]/.test(value.charAt(0))
       this.hasUnderscore = value.includes("_")
+      this.canSubmit = this.isSpecificLength && this.oneUppercase && this.twoLowercase && this.hasNumber && this.startsWithUppercase && this.hasUnderscore
     },
   },
 }
@@ -102,6 +104,11 @@ export default {
 /* Makes the signup button larger when hovering over it */
 #signup-button:hover {
   transform: scale(1.1);
+}
+
+/* Greys out button when disabled*/
+#signup-button:disabled {
+  background-color: rgb(112, 128, 144);
 }
 
 /* Signup section compatibility with cellphones/small screens */
