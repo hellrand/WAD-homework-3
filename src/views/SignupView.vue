@@ -90,7 +90,7 @@ export default {
 #signup-button {
   padding: 7.5px 15px;
   margin-top: 5px;
-  background-color: rgb(15, 49, 141);
+  background-color: rgb(19, 45, 196);
   border: none;
   color: white;
   text-align: center;

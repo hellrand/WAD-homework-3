@@ -16,6 +16,10 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -39,12 +43,12 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: rgb(19, 45, 196);
 }
 
 nav a:hover {
-    background-color: #e4e4e4c4;
-    border: 1px;
-    border-radius: 5px;
+  background-color: #e4e4e4c4;
+  border: 1px;
+  border-radius: 5px;
 }
 </style>

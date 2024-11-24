@@ -4,13 +4,8 @@
     <main>
       <!-- loops through posts and displays each post using the PostComponent -->
       <!-- post is current post (single post object), index is the current index of the loop  -->
-      <PostComponent 
-      v-for="(post, index) in posts" 
-      :key="index" 
-      :post="post"
-      :index="index"
-      />
-      
+      <PostComponent v-for="(post, index) in posts" :key="index" :post="post" :index="index" />
+
       <!-- reset likes button -->
       <button class="reset-likes-button" @click="resetLikes">Reset likes</button>
     </main>
@@ -53,8 +48,8 @@ main {
   min-width: 50px;
   max-width: 250px;
   padding: 10px;
-  background-color: #5096f7d6;
-  color: rgb(19, 45, 196);
+  background-color: rgb(19, 45, 196);
+  color: white;
   font-size: 16px;
   border: none;
   border-radius: 15px;

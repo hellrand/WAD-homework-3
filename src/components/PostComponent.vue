@@ -19,11 +19,11 @@
         <!-- like button and likes count -->
         <div class="post-footer">
             <button class="like-button" @click="handleLikeClick">&#128077;</button>
-        <div class="likes-count">{{ post.likesAmount }} likes</div>
+            <div class="likes-count">{{ post.likesAmount }} likes</div>
         </div>
     </div>
 </template>
-  
+
 <script>
 import { mapActions } from "vuex";
 export default {
@@ -44,9 +44,9 @@ export default {
             this.increaseLikes(this.index); // calls Vuex action with index
         },
     },
-  };
-  </script>
-  
+};
+</script>
+
 <style scoped>
 /* styling for the post container */
 .post {
@@ -100,6 +100,7 @@ export default {
 
 /* styling for the post image */
 .post-image img {
+    border-radius: 10px;
     width: 100%;
     height: auto;
     display: block;
@@ -114,7 +115,7 @@ export default {
 }
 
 /* like button and likes count */
-.post-footer{
+.post-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -122,6 +123,7 @@ export default {
 
 /* styling for the like button */
 .like-button {
+    background-color: transparent;
     border: none;
     margin-bottom: 10px;
     font-size: 24px;
@@ -129,12 +131,13 @@ export default {
 }
 
 .like-button:hover {
+    background-color: transparent;
     transform: scale(1.1);
 }
 
 .like-button:active {
     transform: scale(0.9);
-  
+
 }
 
 /* styling for the likes count */
@@ -151,13 +154,16 @@ export default {
         justify-content: center;
         margin-right: 10px;
     }
+
     nav ul {
         margin-left: 0;
     }
+
     .post {
         width: 70%;
     }
-    .post-header{
+
+    .post-header {
         flex-wrap: wrap;
         gap: 5px;
     }
