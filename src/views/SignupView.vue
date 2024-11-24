@@ -61,7 +61,13 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
+/* Making the footer be at the bottom of the page */
+#footer {
+  position: fixed;
+}
+
+
 /* Styling for the rectangle in which the signup form will be present */
 .signup-section {
   margin: 10px;
@@ -140,9 +146,10 @@ label {
   font-size: 13px;
 }
 
-/* Add a green text color */
+/* Add a green text color and strikethrough */
 .valid {
   color: green;
+  text-decoration: line-through;
 }
 
 /* Add a red text color */
