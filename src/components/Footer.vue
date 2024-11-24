@@ -12,12 +12,40 @@
 <script>
 export default {
     name: 'Footer',
+    created() {
+        window.addEventListener("resize", this.myEventHandler);
+    },
+    destroyed() {
+        window.removeEventListener("resize", this.myEventHandler);
+    },
+    methods: {
+        myEventHandler(e) {
+            if (this.$route.name == "signup") {
+                if (window.innerHeight < 575) { // For footer 
+                    document.getElementById("footer").style.setProperty("position", "")
+                } else {
+                    document.getElementById("footer").style.setProperty("position", "fixed")
+                }
+            }
+        }
+    },
+    watch: {
+        $route(to, from) {
+            console.log(to.name)
+            if (to.name == "signup") {
+                if (window.innerHeight > 575) {
+                    document.getElementById("footer").style.setProperty("position", "fixed")
+                }
+            } else {
+                document.getElementById("footer").style.setProperty("position", "")
+            }
+        },
+    },
 };
 </script>
 
 <style scoped>
 #footer {
-    position: bottom;
     height: 120px;
     bottom: 0px;
     left: 0px;
