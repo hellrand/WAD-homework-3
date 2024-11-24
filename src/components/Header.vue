@@ -1,9 +1,8 @@
 <template>
     <div class="header">
         <nav>
-        <router-link to="/" class="nav-link">Home</router-link> |
-        <!-- <router-link to="/about">About</router-link> -->
-        <router-link to="/login">Log in</router-link>
+            <router-link to="/" class="nav-link">Home</router-link> |
+            <router-link to="/signup">Signup</router-link>
         </nav>
         <router-view/>
     </div>
@@ -12,9 +11,6 @@
     <script>
     export default {
         name: 'Header',
-        props: {
-        msg: String
-        }
     }
     </script>
     

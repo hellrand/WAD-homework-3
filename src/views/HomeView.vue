@@ -10,7 +10,7 @@
       :post="post"
       :index="index"
       />
-
+      
       <!-- reset likes button -->
       <button class="reset-likes-button" @click="resetLikes">Reset likes</button>
     </main>
@@ -20,14 +20,12 @@
 <script>
 // @ is an alias to /src
 import { mapState, mapActions } from "vuex";
-import Header from '@/components/Header.vue';
 import PostComponent from "@/components/PostComponent.vue";
-import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    Header, PostComponent, Footer,
+    PostComponent
   },
   computed: {
     // fetches posts data from the Vuex store
