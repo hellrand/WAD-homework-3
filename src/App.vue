@@ -12,6 +12,9 @@ export default {
   components: {
     Header, Footer
   },
+  beforeCreate() {
+    this.$store.commit('initialiseStore');
+  }
 }
 </script>
 

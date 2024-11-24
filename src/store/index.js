@@ -95,6 +95,15 @@ export default createStore({
         post.likesAmount = 0;
       });
     },
+    initialiseStore(state) {
+      // Check if the ID exists
+      if (localStorage.getItem("store")) {
+        // Replace the state object with the stored item
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem("store")))
+        );
+      }
+    },
   },
   actions: {
     increaseLikes({ commit }, index) {
