@@ -62,12 +62,6 @@ export default {
 </script>
 
 <style>
-/* Making the footer be at the bottom of the page */
-#footer {
-  position: fixed;
-}
-
-
 /* Styling for the rectangle in which the signup form will be present */
 .signup-section {
   margin: 10px;
