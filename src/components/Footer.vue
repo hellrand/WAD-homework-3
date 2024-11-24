@@ -13,15 +13,15 @@
 export default {
     name: 'Footer',
     created() {
-        window.addEventListener("resize", this.myEventHandler);
+        window.addEventListener("resize", this.changeFooterPosition);
     },
     destroyed() {
-        window.removeEventListener("resize", this.myEventHandler);
+        window.removeEventListener("resize", this.changeFooterPosition);
     },
     methods: {
-        myEventHandler(e) {
+        changeFooterPosition(e) { // Makes it so that the footer appears at the bottom of the page in the signup view
             if (this.$route.name == "signup") {
-                if (window.innerHeight < 575) { // For footer 
+                if (window.innerHeight < 575) {
                     document.getElementById("footer").style.setProperty("position", "")
                 } else {
                     document.getElementById("footer").style.setProperty("position", "fixed")
